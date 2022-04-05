@@ -14,4 +14,4 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
     
     - name: Run a one-line script
-      run:  MSBuild.exe WinCust.sln
+      run:  MSBuild.exe ./WinCust.sln
