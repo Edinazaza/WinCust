@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDemoWinCust", "TestDemo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VideoCreator", "src\VideoCreator\VideoCreator.vcxproj", "{EF1F3269-A72D-4089-B562-553812E462C1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinCust", "WinCust\WinCust.vcxproj", "{7DA6AC20-B976-47A7-B770-239C010ABB92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -44,6 +46,14 @@ Global
 		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x64.Build.0 = Release|x64
 		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x86.ActiveCfg = Release|Win32
 		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x86.Build.0 = Release|Win32
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Debug|x64.ActiveCfg = Debug|x64
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Debug|x64.Build.0 = Debug|x64
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Debug|x86.ActiveCfg = Debug|Win32
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Debug|x86.Build.0 = Debug|Win32
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Release|x64.ActiveCfg = Release|x64
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Release|x64.Build.0 = Release|x64
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Release|x86.ActiveCfg = Release|Win32
+		{7DA6AC20-B976-47A7-B770-239C010ABB92}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
