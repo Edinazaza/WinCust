@@ -1,11 +1,16 @@
+#include "CustLineController.h"
 #include "CustLine.h"
 
-HRESULT CustLine::Initialize(HINSTANCE h_instance) {
+CustLineController CustLine::m_controller;
+
+HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd) {
     if (!RegisterCustLine(h_instance))
         return E_FAIL;
 
     if (FAILED(CreateCustLine(h_instance)))
         return E_FAIL;
+
+    m_controller.Initialize(hwnd);
 
     return S_OK;
 }
@@ -18,6 +23,14 @@ HRESULT CustLine::ShowCustLine() {
 
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
     switch (msg) {
+    case WM_COMMAND:
+        if (w_param == StartButton)
+            m_controller.OnStart();
+        else if (w_param == PauseButton)
+            m_controller.OnPause();
+        else if (w_param == StopButton)
+            m_controller.OnStop();
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

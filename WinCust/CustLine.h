@@ -3,11 +3,13 @@
 #include <string>
 #include <array>
 
+#include "CustLineController.h"
+
 class CustLine final
 {
 public:
     CustLine() = default;
-    HRESULT Initialize(HINSTANCE h_instance);
+    HRESULT Initialize(HINSTANCE h_instance, HWND hwnd);
     HRESULT ShowCustLine();
 private:
     enum Buttons
@@ -17,7 +19,6 @@ private:
         StopButton  = 2,
         SaveButton  = 3,
     };
-
 
     static LRESULT CALLBACK CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
     ATOM RegisterCustLine(HINSTANCE h_instance);
@@ -31,4 +32,5 @@ private:
     const unsigned int m_width = 340u;
     const unsigned int m_height = 80u;
 
+    static CustLineController m_controller;
 };

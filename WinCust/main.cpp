@@ -11,7 +11,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     CustLine win_cust;
-    win_cust.Initialize(hInstance);
+    win_cust.Initialize(hInstance, GetDesktopWindow());
     win_cust.ShowCustLine();
 
     MSG msg;
