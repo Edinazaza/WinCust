@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDemoWinCust", "TestDemo
 		{BBA5E6CB-7959-479A-848C-7B4A55594231} = {BBA5E6CB-7959-479A-848C-7B4A55594231}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VideoCreator", "src\VideoCreator\VideoCreator.vcxproj", "{EF1F3269-A72D-4089-B562-553812E462C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +36,14 @@ Global
 		{04D62924-5DC7-4BF1-93C1-8156480C86E4}.Release|x64.Build.0 = Release|x64
 		{04D62924-5DC7-4BF1-93C1-8156480C86E4}.Release|x86.ActiveCfg = Release|Win32
 		{04D62924-5DC7-4BF1-93C1-8156480C86E4}.Release|x86.Build.0 = Release|Win32
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Debug|x64.ActiveCfg = Debug|x64
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Debug|x64.Build.0 = Debug|x64
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Debug|x86.Build.0 = Debug|Win32
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x64.ActiveCfg = Release|x64
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x64.Build.0 = Release|x64
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x86.ActiveCfg = Release|Win32
+		{EF1F3269-A72D-4089-B562-553812E462C1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
