@@ -34,6 +34,18 @@ HBITMAP FrameCreator::GetFrame() {
     return m_frame;
 }
 
+unsigned int FrameCreator::GetWidthFrame() const {
+    RECT client_rect = {};
+    GetClientRect(m_hwnd, &client_rect);
+    return client_rect.right - client_rect.left;
+}
+
+unsigned int FrameCreator::GetHeightFrame() const {
+    RECT client_rect = {};
+    GetClientRect(m_hwnd, &client_rect);
+    return client_rect.bottom - client_rect.top;
+}
+
 HBITMAP FrameCreator::GetUpdateFrame() {
     HDC hdc = GetDC(m_hwnd);
     if (hdc == nullptr) {
