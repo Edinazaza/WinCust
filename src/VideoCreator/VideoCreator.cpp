@@ -12,7 +12,7 @@ HRESULT VideoCreator::Initialize(const unsigned int FPS, const unsigned int widt
     m_fps = FPS;
     m_width = width;
     m_height = height;
-    m_filename = filename + L".mp4";
+    m_filename = filename;
 
     m_frame_duration = 10 * 1000 * 1000 / m_fps;
     m_frame_position = 0u;

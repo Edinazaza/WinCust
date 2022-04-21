@@ -2,15 +2,17 @@
 #include "CustLine.h"
 
 CustLineController CustLine::m_controller;
+const std::wstring CustLine::m_class_name = L"CustLine";
+const std::wstring CustLine::m_title_window = L"WinCust";
 
-HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd) {
+HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd_cust) {
     if (!RegisterCustLine(h_instance))
         return E_FAIL;
 
     if (FAILED(CreateCustLine(h_instance)))
         return E_FAIL;
 
-    m_controller.Initialize(hwnd);
+    m_controller.Initialize(hwnd_cust);
 
     return S_OK;
 }
@@ -19,6 +21,14 @@ HRESULT CustLine::ShowCustLine() {
     ShowWindow(m_hwnd, SW_SHOWNORMAL);
     UpdateWindow(m_hwnd);
     return S_OK;
+}
+
+const std::wstring CustLine::GetCustLineClassName() {
+    return m_class_name;
+}
+
+const std::wstring CustLine::GetCustLineTitle() {
+    return m_title_window;
 }
 
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
@@ -81,14 +91,13 @@ HRESULT CustLine::CreateCustLine(HINSTANCE h_instance) {
 
 HRESULT CustLine::CreateCustLineButtons() {
     constexpr DWORD style_button = WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_BORDER;
-    const int width_button  = m_width / m_buttons.size() - m_buttons.size(); // width_button = |equal part of window space for each button| - |space for button borders|
+    const int width_button  = m_width / m_buttons.size() - 4; // width_button = |equal part of window space for each button| - |space for button borders|
     const int height_button = m_height / 2;
     const HINSTANCE instance_button = (HINSTANCE)GetWindowLongPtr(m_hwnd, GWLP_HINSTANCE);
 
     m_buttons[StartButton] = CreateWindow(L"BUTTON", L"Start", style_button, width_button * StartButton, 0, width_button, height_button, m_hwnd, (HMENU)StartButton, instance_button, NULL);
     m_buttons[PauseButton] = CreateWindow(L"BUTTON", L"Pause", style_button, width_button * PauseButton, 0, width_button, height_button, m_hwnd, (HMENU)PauseButton, instance_button, NULL);
-    m_buttons[StopButton]  = CreateWindow(L"BUTTON", L"Stop",  style_button, width_button * StopButton,  0, width_button, height_button, m_hwnd, (HMENU)StopButton, instance_button, NULL);
-    m_buttons[SaveButton]  = CreateWindow(L"BUTTON", L"Save",  style_button, width_button * SaveButton,  0, width_button, height_button, m_hwnd, (HMENU)SaveButton, instance_button, NULL);
+    m_buttons[StopButton]  = CreateWindow(L"BUTTON", L"Stop",  style_button, width_button * StopButton,  0, width_button, height_button, m_hwnd, (HMENU)StopButton,  instance_button, NULL);
 
     for (const HWND& buttons : m_buttons)
         if (!buttons)

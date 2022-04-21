@@ -10,7 +10,6 @@ public:
     HRESULT OnStart();
     HRESULT OnPause();
     HRESULT OnStop();
-    HRESULT OnSave();
 private:
     enum WinCustStatus
     {
@@ -20,6 +19,8 @@ private:
     };
 
     HRESULT PushFrame();
+    HRESULT FileMove();
+    HRESULT SetFilename();
 
     const unsigned int m_fps = 25;
 
@@ -27,5 +28,7 @@ private:
     VideoCreator m_video_creator;
 
     WinCustStatus m_status = STOP;
+
+    std::wstring m_filename = L"";
 };
 
