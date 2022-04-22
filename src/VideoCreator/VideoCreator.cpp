@@ -41,7 +41,7 @@ HRESULT VideoCreator::Initialize(const unsigned int FPS, const unsigned int widt
     if (FAILED(m_writter->AddStream(out_media, &m_stream_index)))
         return E_FAIL;
 
-    if (m_writter && FAILED(m_writter->SetInputMediaType(m_stream_index, input_media, NULL)))
+    if (FAILED(m_writter->SetInputMediaType(m_stream_index, input_media, NULL)))
         return E_FAIL;
 
     video_status = INITIALIZE_STATUS;
@@ -103,7 +103,7 @@ HRESULT VideoCreator::AddFrame(std::vector<BYTE>& frame, const bool isUpDown) {
     m_frame_position += m_frame_duration;
 
     // write
-    if (FAILED(m_writter->WriteSample(m_stream_index, sample)))
+    if (!m_writter || FAILED(m_writter->WriteSample(m_stream_index, sample)))
         return E_FAIL;
 
     return S_OK;
