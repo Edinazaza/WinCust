@@ -10,9 +10,9 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    CustLine win_cust;
-    win_cust.Initialize(hInstance, GetDesktopWindow());
-    win_cust.ShowCustLine();
+    std::shared_ptr<CustLine> win_cust = CustLine::GetInstance();
+    win_cust->Initialize(hInstance, GetDesktopWindow());
+    win_cust->ShowCustLine();
 
     MSG msg;
     // Main message loop:

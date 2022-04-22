@@ -5,6 +5,15 @@ CustLineController CustLine::m_controller;
 std::array<HWND, 3> CustLine::m_buttons = {};
 const std::wstring CustLine::m_class_name = L"CustLine";
 const std::wstring CustLine::m_title_window = L"WinCust";
+std::shared_ptr<CustLine> CustLine::m_instance = nullptr;
+
+
+std::shared_ptr<CustLine> CustLine::GetInstance() {
+    if (m_instance == nullptr) {
+        m_instance.reset(new CustLine());
+    }
+    return m_instance;
+}
 
 HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd_cust) {
     if (!RegisterCustLine(h_instance))

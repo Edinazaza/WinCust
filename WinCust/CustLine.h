@@ -8,12 +8,18 @@
 class CustLine final
 {
 public:
-    CustLine() = default;
+    CustLine(CustLine& other) = delete;
+    void operator=(const CustLine&) = delete;
+
+    static std::shared_ptr<CustLine> GetInstance();
+
     HRESULT Initialize(HINSTANCE h_instance, HWND hwnd_cust);
     HRESULT ShowCustLine();
     static const std::wstring GetCustLineClassName();
     static const std::wstring GetCustLineTitle();
 private:
+    CustLine() = default;
+
     enum Buttons
     {
         StartButton = 0,
@@ -36,4 +42,6 @@ private:
     const unsigned int m_height = 80u;
 
     static CustLineController m_controller;
+
+    static std::shared_ptr<CustLine> m_instance;
 };
