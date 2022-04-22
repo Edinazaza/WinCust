@@ -26,8 +26,10 @@ private:
     HRESULT CreateCustLine(HINSTANCE h_instance);
     HRESULT CreateCustLineButtons();
 
+    static HRESULT OnPush(Buttons button_push);
+
     HWND m_hwnd = NULL;
-    std::array<HWND, 3> m_buttons = {};
+    static std::array<HWND, 3> m_buttons;
     static const std::wstring m_class_name;
     static const std::wstring m_title_window;
     const unsigned int m_width = 340u;

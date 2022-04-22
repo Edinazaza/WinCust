@@ -2,6 +2,7 @@
 #include "CustLine.h"
 
 CustLineController CustLine::m_controller;
+std::array<HWND, 3> CustLine::m_buttons = {};
 const std::wstring CustLine::m_class_name = L"CustLine";
 const std::wstring CustLine::m_title_window = L"WinCust";
 
@@ -34,6 +35,7 @@ const std::wstring CustLine::GetCustLineTitle() {
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
     switch (msg) {
     case WM_COMMAND:
+        OnPush(static_cast<Buttons>(w_param));
         if (w_param == StartButton)
             m_controller.OnStart();
         else if (w_param == PauseButton)
@@ -104,4 +106,14 @@ HRESULT CustLine::CreateCustLineButtons() {
             return E_FAIL;
 
     return S_OK;
+}
+
+HRESULT CustLine::OnPush(Buttons button_push) {
+    for (const HWND& button : m_buttons)
+        SendMessageW(button, BM_SETCHECK, 0, 0);
+    
+    if (button_push != StartButton && m_controller.GetStatus() == CustLineController::WinCustStatus::STOP)
+        return S_OK;
+
+    return SendMessageW(m_buttons[button_push], BM_SETCHECK, 1, 0);
 }

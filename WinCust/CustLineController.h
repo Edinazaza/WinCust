@@ -5,12 +5,6 @@
 class CustLineController final
 {
 public:
-    CustLineController() = default;
-    HRESULT Initialize(HWND hwnd);
-    HRESULT OnStart();
-    HRESULT OnPause();
-    HRESULT OnStop();
-private:
     enum WinCustStatus
     {
         PLAY,
@@ -18,6 +12,15 @@ private:
         STOP,
     };
 
+    CustLineController() = default;
+    HRESULT Initialize(HWND hwnd);
+    HRESULT OnStart();
+    HRESULT OnPause();
+    HRESULT OnStop();
+
+    const WinCustStatus GetStatus() const;
+
+private:
     HRESULT PushFrame();
     HRESULT FileMove();
     HRESULT SetFilename();
