@@ -58,7 +58,7 @@ const CustLineController::WinCustStatus CustLineController::GetStatus() const {
 
 HRESULT CustLineController::PushFrame() {
     std::vector<BYTE> frame(m_frame_creator.GetWidthFrame() * m_frame_creator.GetWidthFrame() * 4);
-    GetBitmapBits(m_frame_creator.GetFrame(), 1920 * 1080 * 4, frame.data());
+    GetBitmapBits(m_frame_creator.GetFrame(), frame.size(), frame.data());
     m_video_creator.AddFrame(frame, true);
 
     if(m_status == PLAY)
