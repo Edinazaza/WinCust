@@ -45,7 +45,6 @@ HRESULT CustLineController::OnPause() {
 HRESULT CustLineController::OnStop() {
     if (m_status != STOP) {
         m_status = STOP;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000 / m_fps));
         m_video_creator.StopWrite();
         FileMove();
     }
