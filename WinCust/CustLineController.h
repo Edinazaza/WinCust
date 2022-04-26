@@ -13,7 +13,7 @@ public:
     };
 
     CustLineController() = default;
-    HRESULT Initialize(HWND hwnd);
+    HRESULT Initialize(HWND hwnd_cust);
     HRESULT OnStart();
     HRESULT OnPause();
     HRESULT OnStop();

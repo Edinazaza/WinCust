@@ -1,8 +1,8 @@
 #include "CustLineController.h"
 #include "CustLine.h"
 
-HRESULT CustLineController::Initialize(HWND hwnd) {
-    if(FAILED(m_frame_creator.SetHWND(hwnd)))
+HRESULT CustLineController::Initialize(HWND hwnd_cust) {
+    if(FAILED(m_frame_creator.SetHWND(hwnd_cust)))
        return E_FAIL;
 
     return S_OK;
