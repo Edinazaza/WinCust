@@ -81,3 +81,7 @@ void FrameCreator::ClearFrame() {
     DeleteObject(m_frame);
     m_update_frame = true;
 }
+
+HWND FrameCreator::GetHWND() const {
+    return m_hwnd;
+}

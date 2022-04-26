@@ -9,6 +9,7 @@ public:
     ~FrameCreator();
     HRESULT SetHWND(HWND hwnd);
     HBITMAP GetFrame();
+    HWND GetHWND() const;
     unsigned int GetWidthFrame() const;
     unsigned int GetHeightFrame() const;
 private:
