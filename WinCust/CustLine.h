@@ -4,6 +4,7 @@
 #include <array>
 
 #include "CustLineController.h"
+#include "BorderHiglighter.h"
 
 class CustLine final
 {
@@ -42,6 +43,6 @@ private:
     const unsigned int m_height = 80u;
 
     static CustLineController m_controller;
-
+    static BorderHiglighter m_higlighter;
     static std::shared_ptr<CustLine> m_instance;
 };

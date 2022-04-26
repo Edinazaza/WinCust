@@ -2,6 +2,8 @@
 #include "CustLine.h"
 
 CustLineController CustLine::m_controller;
+BorderHiglighter CustLine::m_higlighter;
+
 std::array<HWND, 3> CustLine::m_buttons = {};
 const std::wstring CustLine::m_class_name = L"CustLine";
 const std::wstring CustLine::m_title_window = L"WinCust";
@@ -23,7 +25,7 @@ HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd_cust) {
         return E_FAIL;
 
     m_controller.Initialize(hwnd_cust);
-
+    m_higlighter.Initialize(hwnd_cust);
     return S_OK;
 }
 
@@ -45,12 +47,18 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
     switch (msg) {
     case WM_COMMAND:
         OnPush(static_cast<Buttons>(w_param));
-        if (w_param == StartButton)
+        if (w_param == StartButton) {
+            m_higlighter.StartDrawing();
             m_controller.OnStart();
-        else if (w_param == PauseButton)
+        }
+        else if (w_param == PauseButton) {
+            m_higlighter.StopDrawing();
             m_controller.OnPause();
-        else if (w_param == StopButton)
+        }
+        else if (w_param == StopButton) {
+            m_higlighter.StopDrawing();
             m_controller.OnStop();
+        }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
