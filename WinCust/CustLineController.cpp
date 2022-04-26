@@ -56,6 +56,10 @@ const CustLineController::WinCustStatus CustLineController::GetStatus() const {
     return m_status;
 }
 
+HWND CustLineController::GetCustHWND() const {
+    return m_frame_creator.GetHWND();
+}
+
 HRESULT CustLineController::PushFrame() {
     std::vector<BYTE> frame(m_frame_creator.GetWidthFrame() * m_frame_creator.GetWidthFrame() * 4);
     GetBitmapBits(m_frame_creator.GetFrame(), frame.size(), frame.data());

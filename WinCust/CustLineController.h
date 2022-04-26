@@ -19,7 +19,7 @@ public:
     HRESULT OnStop();
 
     const WinCustStatus GetStatus() const;
-
+    HWND GetCustHWND() const;
 private:
     HRESULT PushFrame();
     HRESULT FileMove();
