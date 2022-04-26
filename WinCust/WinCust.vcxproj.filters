@@ -24,12 +24,18 @@
     <ClCompile Include="CustLineController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BorderHiglighter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CustLineController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BorderHiglighter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

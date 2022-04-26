@@ -151,11 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BorderHiglighter.cpp" />
     <ClCompile Include="CustLine.cpp" />
     <ClCompile Include="CustLineController.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BorderHiglighter.h" />
     <ClInclude Include="CustLine.h" />
     <ClInclude Include="CustLineController.h" />
   </ItemGroup>
