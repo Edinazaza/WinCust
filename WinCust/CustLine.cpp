@@ -1,5 +1,28 @@
 #include "CustLineController.h"
 #include "CustLine.h"
+#include <sstream>
+
+namespace
+{
+    std::wstring seconds_to_string_hh_mm_ss(unsigned long int time) {
+        unsigned int hh = time / 3600;
+        time = time % 3600;
+        unsigned int mm = time / 60;
+        time = time % 60;
+        unsigned int ss = time;
+        std::wstringstream ws;
+        ws.width(2);
+        ws.fill('0');
+        ws << hh << L':';
+        ws.width(2);
+        ws.fill('0');
+        ws << mm << L':';
+        ws.width(2);
+        ws.fill('0');
+        ws << std::right << ss;
+        return ws.str();
+    }
+}
 
 CustLineController CustLine::m_controller;
 BorderHiglighter CustLine::m_higlighter;
@@ -51,13 +74,26 @@ const std::wstring CustLine::GetCustLineTitle() {
 }
 
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
+    static unsigned long int seconds_of_record = 0ul;
     switch (msg) {
+    case WM_TIMER:
+        if (w_param != StatusBar)
+            break;
+
+        if (m_controller.GetStatus() == CustLineController::WinCustStatus::PLAY) {
+            SetTimer(hwnd, StatusBar, 1000, (TIMERPROC)CustLineProc);
+            m_statusbar.SetText(seconds_to_string_hh_mm_ss(seconds_of_record));
+            ++seconds_of_record;
+        } else if (m_controller.GetStatus() == CustLineController::WinCustStatus::STOP)
+            seconds_of_record = 0ul;
+        break;
     case WM_COMMAND:
         OnPush(static_cast<Controllers>(w_param));
         if (w_param == StartButton) {
             m_higlighter.StartDrawing();
             m_controller.OnStart();
             ShowStatusBar();
+            SetTimer(hwnd, StatusBar, 1000, (TIMERPROC)CustLineProc);
         }
         else if (w_param == PauseButton) {
             m_higlighter.StopDrawing();
