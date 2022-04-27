@@ -3,10 +3,17 @@
 
 CustLineController CustLine::m_controller;
 BorderHiglighter CustLine::m_higlighter;
+CustBar CustLine::m_statusbar;
 
+HWND CustLine::m_hwnd = NULL;
 std::array<HWND, 3> CustLine::m_buttons = {};
 const std::wstring CustLine::m_class_name = L"CustLine";
 const std::wstring CustLine::m_title_window = L"WinCust";
+
+const unsigned int CustLine::m_width = 340u;
+const unsigned int CustLine::m_height = 80u;
+const unsigned int CustLine::m_statusbar_height = 20u;
+
 std::shared_ptr<CustLine> CustLine::m_instance = nullptr;
 
 
@@ -50,6 +57,7 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
         if (w_param == StartButton) {
             m_higlighter.StartDrawing();
             m_controller.OnStart();
+            ShowStatusBar();
         }
         else if (w_param == PauseButton) {
             m_higlighter.StopDrawing();
@@ -58,6 +66,7 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
         else if (w_param == StopButton) {
             m_higlighter.StopDrawing();
             m_controller.OnStop();
+            HideStatusbar();
         }
         break;
     case WM_DESTROY:
@@ -105,6 +114,12 @@ HRESULT CustLine::CreateCustLine(HINSTANCE h_instance) {
     if (FAILED(CreateCustLineButtons()))
         return E_FAIL;
 
+    if (FAILED(m_statusbar.Initialize(m_hwnd, h_instance, StatusBar)))
+        return E_FAIL;
+
+    if (FAILED(m_statusbar.SetMinHeight(m_statusbar_height)))
+        return E_FAIL;
+
     return S_OK;
 }
 
@@ -133,4 +148,22 @@ HRESULT CustLine::OnPush(Controllers button_push) {
         return S_OK;
 
     return SendMessageW(m_buttons[button_push], BM_SETCHECK, 1, 0);
+}
+
+HRESULT CustLine::ShowStatusBar() {
+    SetWindowPos(m_hwnd, 0, 0, 0, m_width, m_height + m_statusbar_height, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOZORDER);
+
+    if (FAILED(m_statusbar.Show()))
+        return E_FAIL;
+
+    return S_OK;
+}
+
+HRESULT CustLine::HideStatusbar() {
+    SetWindowPos(m_hwnd, 0, 0, 0, m_width, m_height, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOZORDER);
+
+    if (FAILED(m_statusbar.Hide()))
+        return E_FAIL;
+
+    return S_OK;
 }

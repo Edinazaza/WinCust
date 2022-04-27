@@ -5,6 +5,7 @@
 
 #include "CustLineController.h"
 #include "BorderHiglighter.h"
+#include "CustBar.h"
 
 class CustLine final
 {
@@ -26,6 +27,7 @@ private:
         StartButton = 0,
         PauseButton = 1,
         StopButton  = 2,
+        StatusBar   = 4,
     };
 
     static LRESULT CALLBACK CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
@@ -34,15 +36,19 @@ private:
     HRESULT CreateCustLineButtons();
 
     static HRESULT OnPush(Controllers button_push);
+    static HRESULT ShowStatusBar();
+    static HRESULT HideStatusbar();
 
-    HWND m_hwnd = NULL;
+    static HWND m_hwnd;
     static std::array<HWND, 3> m_buttons;
     static const std::wstring m_class_name;
     static const std::wstring m_title_window;
-    const unsigned int m_width = 340u;
-    const unsigned int m_height = 80u;
+    static const unsigned int m_width;
+    static const unsigned int m_height;
+    static const unsigned int m_statusbar_height;
 
     static CustLineController m_controller;
     static BorderHiglighter m_higlighter;
+    static CustBar m_statusbar;
     static std::shared_ptr<CustLine> m_instance;
 };
