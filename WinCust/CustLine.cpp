@@ -46,7 +46,7 @@ const std::wstring CustLine::GetCustLineTitle() {
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
     switch (msg) {
     case WM_COMMAND:
-        OnPush(static_cast<Buttons>(w_param));
+        OnPush(static_cast<Controllers>(w_param));
         if (w_param == StartButton) {
             m_higlighter.StartDrawing();
             m_controller.OnStart();
@@ -125,7 +125,7 @@ HRESULT CustLine::CreateCustLineButtons() {
     return S_OK;
 }
 
-HRESULT CustLine::OnPush(Buttons button_push) {
+HRESULT CustLine::OnPush(Controllers button_push) {
     for (const HWND& button : m_buttons)
         SendMessageW(button, BM_SETCHECK, 0, 0);
     

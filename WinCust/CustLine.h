@@ -21,7 +21,7 @@ public:
 private:
     CustLine() = default;
 
-    enum Buttons
+    enum Controllers
     {
         StartButton = 0,
         PauseButton = 1,
@@ -33,7 +33,7 @@ private:
     HRESULT CreateCustLine(HINSTANCE h_instance);
     HRESULT CreateCustLineButtons();
 
-    static HRESULT OnPush(Buttons button_push);
+    static HRESULT OnPush(Controllers button_push);
 
     HWND m_hwnd = NULL;
     static std::array<HWND, 3> m_buttons;
