@@ -4,7 +4,7 @@
 HRESULT CustBar::Initialize(const HWND hwnd_parent, const HINSTANCE h_instance, const int id) {
     InitCommonControls();
     constexpr DWORD style_of_statusbar = WS_CHILD | CCS_NODIVIDER;
-    m_hwnd = CreateWindowExW(WS_EX_RIGHT, STATUSCLASSNAME, (PCTSTR)NULL, style_of_statusbar, 0, 0, 0, 0, hwnd_parent, (HMENU)id, h_instance, NULL);
+    m_hwnd = CreateWindowExW(0, STATUSCLASSNAME, (PCTSTR)NULL, style_of_statusbar, 0, 0, 0, 0, hwnd_parent, (HMENU)id, h_instance, NULL);
 
     if (!m_hwnd)
         return E_FAIL;
@@ -24,7 +24,7 @@ HRESULT CustBar::Hide() {
 }
 
 HRESULT CustBar::SetText(const std::wstring& text) {
-    SendMessageW(m_hwnd, SB_SETTEXT, 0, (LPARAM)(LPSTR)text.data());
+    SendMessageW(m_hwnd, SB_SETTEXT, 0, (LPARAM)(LPSTR)(L"\t\t" + text).data());
     return S_OK;
 }
 
