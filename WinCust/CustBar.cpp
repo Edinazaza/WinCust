@@ -24,7 +24,7 @@ HRESULT CustBar::Hide() {
 }
 
 HRESULT CustBar::SetText(const std::wstring& text) {
-    SendMessageW(m_hwnd, SB_SETTEXT, 0, (LONG)text.data());
+    SendMessageW(m_hwnd, SB_SETTEXT, 0, (LPARAM)(LPSTR)text.data());
     return S_OK;
 }
 
