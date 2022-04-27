@@ -27,6 +27,9 @@
     <ClCompile Include="BorderHiglighter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustLine.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BorderHiglighter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

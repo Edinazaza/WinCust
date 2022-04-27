@@ -94,7 +94,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,7 +113,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,7 +128,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,17 +147,19 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;mfreadwrite.lib;mfplat.lib;mfuuid.lib;FrameCreator.lib;VideoCreator.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BorderHiglighter.cpp" />
+    <ClCompile Include="CustBar.cpp" />
     <ClCompile Include="CustLine.cpp" />
     <ClCompile Include="CustLineController.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BorderHiglighter.h" />
+    <ClInclude Include="CustBar.h" />
     <ClInclude Include="CustLine.h" />
     <ClInclude Include="CustLineController.h" />
   </ItemGroup>
