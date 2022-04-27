@@ -17,6 +17,7 @@ public:
     HRESULT OnStart();
     HRESULT OnPause();
     HRESULT OnStop();
+    ~CustLineController();
 
     const WinCustStatus GetStatus() const;
     HWND GetCustHWND() const;
@@ -31,6 +32,8 @@ private:
     VideoCreator m_video_creator;
 
     WinCustStatus m_status = STOP;
+
+    std::thread m_push_frame_process;
 
     std::wstring m_filename = L"";
 };

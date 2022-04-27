@@ -18,19 +18,13 @@ HRESULT CustLineController::OnStart() {
             return E_FAIL;
 
         m_video_creator.StartWrite();
+        m_status = PLAY;
 
-        std::thread([this]() {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000/m_fps));
-            PushFrame();
-        }).detach();
+        if (m_push_frame_process.joinable())
+            m_push_frame_process.join();
 
-    } else if (m_status == PAUSE)
-        std::thread([this]() {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000 / m_fps));
-            PushFrame();
-        }).detach();
-
-    m_status = PLAY;
+        m_push_frame_process = std::thread(&CustLineController::PushFrame, this);
+    }
 
     return S_OK;
 }
@@ -52,6 +46,12 @@ HRESULT CustLineController::OnStop() {
     return S_OK;
 }
 
+CustLineController::~CustLineController() {
+    m_status = STOP;
+    if (m_push_frame_process.joinable())
+        m_push_frame_process.join();
+}
+
 const CustLineController::WinCustStatus CustLineController::GetStatus() const {
     return m_status;
 }
@@ -61,15 +61,22 @@ HWND CustLineController::GetCustHWND() const {
 }
 
 HRESULT CustLineController::PushFrame() {
-    std::vector<BYTE> frame(m_frame_creator.GetWidthFrame() * m_frame_creator.GetWidthFrame() * 4);
-    GetBitmapBits(m_frame_creator.GetFrame(), frame.size(), frame.data());
-    m_video_creator.AddFrame(frame, true);
+    const unsigned int size_of_frame_data = m_frame_creator.GetWidthFrame() * m_frame_creator.GetWidthFrame() * 4;
+    std::vector<BYTE> frame(size_of_frame_data);
+    const std::chrono::milliseconds frame_pause{1000 / m_fps};
+    while (true) {
+        do {
+            std::this_thread::sleep_for(frame_pause);
+        } while (m_status == PAUSE);
 
-    if(m_status == PLAY)
-        std::thread([this]() {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000 / m_fps));
-            PushFrame();
+        if (m_status == STOP)
+            break;
+
+        GetBitmapBits(m_frame_creator.GetFrame(), frame.size(), frame.data());
+        std::thread([this, &frame]() {
+            m_video_creator.AddFrame(frame, true);
         }).detach();
+    }
 
     return S_OK;
 }
