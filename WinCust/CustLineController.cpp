@@ -84,9 +84,9 @@ HRESULT CustLineController::PushFrame() {
 
         if (m_status == STOP)
             break;
-
+        frame.resize(size_of_frame_data);
         GetBitmapBits(m_frame_creator.GetFrame(), static_cast<LONG>(frame.size()), frame.data());
-        std::thread([this, &frame]() {
+        std::thread([this, frame = std::move(frame)]() mutable {
             m_video_creator.AddFrame(frame, true);
         }).detach();
 
