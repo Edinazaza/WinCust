@@ -30,8 +30,8 @@ private:
     {
         StartButton = 0,
         PauseButton = 1,
-        StopButton  = 2,
-        StatusBar   = 4,
+        StopButton = 2,
+        StatusBar = 3,
     };
 
     static LRESULT CALLBACK CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
