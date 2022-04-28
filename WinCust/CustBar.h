@@ -12,6 +12,6 @@ public:
     HRESULT SetText(const std::wstring& text);
     HRESULT SetMinHeight(const unsigned int height);
 private:
-    HWND m_hwnd;
+    HWND m_hwnd = NULL;
 };
 

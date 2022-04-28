@@ -25,9 +25,9 @@ namespace
     }
 }
 
-CustLineController CustLine::m_controller;
-BorderHiglighter CustLine::m_higlighter;
-CustBar CustLine::m_statusbar;
+CustLineController CustLine::m_controller = {};
+BorderHiglighter CustLine::m_higlighter = {};
+CustBar CustLine::m_statusbar = {};
 
 HWND CustLine::m_hwnd = NULL;
 std::array<HWND, 3> CustLine::m_buttons = {};

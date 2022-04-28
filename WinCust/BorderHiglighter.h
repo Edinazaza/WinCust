@@ -12,10 +12,11 @@ public:
     HRESULT StopDrawing();
     ~BorderHiglighter();
 private:
-    HWND m_hwnd_cust;
     void Draw();
+
+    HWND m_hwnd_cust = NULL;
     bool is_draw = false;
     const COLORREF m_color = RGB(255, 0, 0);
-    std::thread m_draw;
+    std::thread m_draw = {};
 };
 

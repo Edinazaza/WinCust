@@ -28,12 +28,12 @@ private:
 
     static const unsigned int m_fps = 25;
 
-    FrameCreator m_frame_creator;
-    VideoCreator m_video_creator;
+    FrameCreator m_frame_creator = {};
+    VideoCreator m_video_creator = {};
 
     WinCustStatus m_status = STOP;
 
-    std::thread m_push_frame_process;
+    std::thread m_push_frame_process = {};
 
     std::wstring m_filename = L"";
 
