@@ -102,8 +102,10 @@ HRESULT CustLineController::FileMove() {
     open_filename.lpstrInitialDir = NULL;
     open_filename.Flags = OFN_OVERWRITEPROMPT | OFN_NOTESTFILECREATE;
 
-    if(!GetSaveFileName(&open_filename))
+    if(!GetSaveFileName(&open_filename)) {
+        DeleteFileW(m_filename.data());
         return E_FAIL;
+    }
 
     std::wstring to(to_video_filename);
     to += L".mp4";
