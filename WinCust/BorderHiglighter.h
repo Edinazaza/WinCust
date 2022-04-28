@@ -19,4 +19,3 @@ private:
     const COLORREF m_color = RGB(255, 0, 0);
     std::thread m_draw = {};
 };
-

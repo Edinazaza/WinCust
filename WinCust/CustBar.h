@@ -15,4 +15,3 @@ public:
 private:
     HWND m_hwnd = NULL;
 };
-

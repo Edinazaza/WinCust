@@ -45,4 +45,3 @@ private:
 
     static const std::wstring m_dir_video;
 };
-
