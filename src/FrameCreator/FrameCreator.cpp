@@ -9,7 +9,7 @@ FrameCreator::~FrameCreator() {
 }
 
 HRESULT FrameCreator::SetHWND(HWND hwnd) {
-    if (hwnd == nullptr) {
+    if (hwnd == NULL) {
         return E_FAIL;
     }
 
@@ -20,8 +20,8 @@ HRESULT FrameCreator::SetHWND(HWND hwnd) {
 }
 
 HBITMAP FrameCreator::GetFrame() {
-    if (m_hwnd == nullptr)
-        return nullptr;
+    if (m_hwnd == NULL)
+        return NULL;
 
     if (m_update_frame) {
         m_frame_updater = std::async(std::launch::async, &FrameCreator::GetUpdateFrame, this);
@@ -48,8 +48,8 @@ unsigned int FrameCreator::GetHeightFrame() const {
 
 HBITMAP FrameCreator::GetUpdateFrame() {
     HDC hdc = GetDC(m_hwnd);
-    if (hdc == nullptr) {
-        return nullptr;
+    if (hdc == NULL) {
+        return NULL;
     }
 
     HDC hdc_compatible = CreateCompatibleDC(hdc);

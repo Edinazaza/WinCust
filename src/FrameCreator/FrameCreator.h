@@ -16,8 +16,8 @@ private:
     HBITMAP GetUpdateFrame();
     void ClearFrame();
 
-    HWND m_hwnd = {};
-    HBITMAP m_frame = nullptr;
+    HWND m_hwnd = NULL;
+    HBITMAP m_frame = NULL;
     bool m_update_frame = true;
     std::future<HBITMAP> m_frame_updater = {};
 };
