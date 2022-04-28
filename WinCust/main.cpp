@@ -8,6 +8,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
                       int       nCmdShow) {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(nCmdShow);
 
     std::shared_ptr<CustLine> win_cust = CustLine::GetInstance();
     win_cust->Initialize(hInstance, GetDesktopWindow());
