@@ -63,10 +63,11 @@ HWND CustLineController::GetCustHWND() const {
 HRESULT CustLineController::PushFrame() {
     const unsigned int size_of_frame_data = m_frame_creator.GetWidthFrame() * m_frame_creator.GetWidthFrame() * 4;
     std::vector<BYTE> frame(size_of_frame_data);
-    const std::chrono::milliseconds frame_pause{1000 / m_fps};
+    auto next_frame = std::chrono::system_clock::now();
+    auto last_frame = next_frame - std::chrono::duration<int64_t, std::ratio<1, m_fps>>{1};
     while (true) {
         do {
-            std::this_thread::sleep_for(frame_pause);
+            std::this_thread::sleep_until(next_frame);
         } while (m_status == PAUSE);
 
         if (m_status == STOP)
@@ -76,6 +77,9 @@ HRESULT CustLineController::PushFrame() {
         std::thread([this, &frame]() {
             m_video_creator.AddFrame(frame, true);
         }).detach();
+
+        last_frame = next_frame;
+        next_frame += std::chrono::duration<int64_t, std::ratio<1, m_fps>>{1};
     }
 
     return S_OK;

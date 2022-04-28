@@ -26,7 +26,7 @@ private:
     HRESULT FileMove();
     HRESULT SetFilename();
 
-    const unsigned int m_fps = 25;
+    static const unsigned int m_fps = 25;
 
     FrameCreator m_frame_creator;
     VideoCreator m_video_creator;
