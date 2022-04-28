@@ -104,12 +104,10 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
             m_controller.OnStart();
             ShowStatusBar();
             SetTimer(hwnd, StatusBar, 1000, (TIMERPROC)CustLineProc);
-        }
-        else if (w_param == PauseButton) {
+        } else if (w_param == PauseButton) {
             m_higlighter.StopDrawing();
             m_controller.OnPause();
-        }
-        else if (w_param == StopButton) {
+        } else if (w_param == StopButton) {
             m_higlighter.StopDrawing();
             m_controller.OnStop();
             HideStatusbar();
@@ -171,13 +169,13 @@ HRESULT CustLine::CreateCustLine(const HINSTANCE h_instance) {
 
 HRESULT CustLine::CreateCustLineButtons() {
     constexpr DWORD style_button = WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_BORDER;
-    const unsigned int width_button  = m_width / static_cast<unsigned int>(m_buttons.size()) - 4u; // width_button = |equal part of window space for each button| - |space for button borders|
+    const unsigned int width_button = m_width / static_cast<unsigned int>(m_buttons.size()) - 4u; // width_button = |equal part of window space for each button| - |space for button borders|
     const unsigned int height_button = m_height / 2u;
     const HINSTANCE instance_button = (HINSTANCE)GetWindowLongPtr(m_hwnd, GWLP_HINSTANCE);
 
     m_buttons[StartButton] = CreateWindow(L"BUTTON", L"Start", style_button, width_button * StartButton, 0, width_button, height_button, m_hwnd, (HMENU)StartButton, instance_button, NULL);
     m_buttons[PauseButton] = CreateWindow(L"BUTTON", L"Pause", style_button, width_button * PauseButton, 0, width_button, height_button, m_hwnd, (HMENU)PauseButton, instance_button, NULL);
-    m_buttons[StopButton]  = CreateWindow(L"BUTTON", L"Stop",  style_button, width_button * StopButton,  0, width_button, height_button, m_hwnd, (HMENU)StopButton,  instance_button, NULL);
+    m_buttons[StopButton] = CreateWindow(L"BUTTON", L"Stop", style_button, width_button * StopButton, 0, width_button, height_button, m_hwnd, (HMENU)StopButton, instance_button, NULL);
 
     for (const HWND& buttons : m_buttons)
         if (!buttons)
@@ -189,7 +187,7 @@ HRESULT CustLine::CreateCustLineButtons() {
 HRESULT CustLine::OnPush(const Controllers button_push) {
     for (const HWND& button : m_buttons)
         SendMessageW(button, BM_SETCHECK, 0, 0);
-    
+
     if (button_push != StartButton && m_controller.GetStatus() == CustLineController::WinCustStatus::STOP)
         return S_OK;
 

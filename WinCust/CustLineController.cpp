@@ -14,8 +14,8 @@ const unsigned int CustLineController::m_fps = 25u;
 const std::wstring CustLineController::m_dir_video = L"out\\";
 
 HRESULT CustLineController::Initialize(const HWND hwnd_cust) {
-    if(FAILED(m_frame_creator.SetHWND(hwnd_cust)))
-       return E_FAIL;
+    if (FAILED(m_frame_creator.SetHWND(hwnd_cust)))
+        return E_FAIL;
 
     return S_OK;
 }
@@ -42,7 +42,7 @@ HRESULT CustLineController::OnStart() {
 }
 
 HRESULT CustLineController::OnPause() {
-    if(m_status == PLAY)
+    if (m_status == PLAY)
         m_status = PAUSE;
 
     return S_OK;
@@ -114,7 +114,7 @@ HRESULT CustLineController::FileMove() const {
     open_filename.lpstrInitialDir = NULL;
     open_filename.Flags = OFN_OVERWRITEPROMPT | OFN_NOTESTFILECREATE;
 
-    if(!GetSaveFileName(&open_filename)) {
+    if (!GetSaveFileName(&open_filename)) {
         DeleteFileW(m_filename.data());
         return E_FAIL;
     }
@@ -122,7 +122,7 @@ HRESULT CustLineController::FileMove() const {
     std::wstring to{to_video_filename};
     to += L".mp4";
 
-    if(!MoveFileExW(m_filename.data(), to.data(), MOVEFILE_REPLACE_EXISTING))
+    if (!MoveFileExW(m_filename.data(), to.data(), MOVEFILE_REPLACE_EXISTING))
         return E_FAIL;
 
     return S_OK;
