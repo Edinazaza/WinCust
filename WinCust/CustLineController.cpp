@@ -1,6 +1,8 @@
 #include "CustLineController.h"
 #include "CustLine.h"
 
+const std::wstring CustLineController::m_dir_video = L"out\\";
+
 HRESULT CustLineController::Initialize(HWND hwnd_cust) {
     if(FAILED(m_frame_creator.SetHWND(hwnd_cust)))
        return E_FAIL;
@@ -125,7 +127,8 @@ HRESULT CustLineController::SetFilename() {
 
     std::wstring from(from_path_to_video_filename);
     from.replace(from.begin() + from.find_last_of(L"\\") + 1, from.end(), L"");
-    m_filename = from + std::to_wstring(std::time(NULL)) + L".mp4";
+    CreateDirectoryW((from + m_dir_video).data(), NULL);
+    m_filename = from + m_dir_video + std::to_wstring(std::time(NULL)) + L".mp4";
 
     return S_OK;
 }

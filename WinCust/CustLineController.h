@@ -36,5 +36,7 @@ private:
     std::thread m_push_frame_process;
 
     std::wstring m_filename = L"";
+
+    static const std::wstring m_dir_video;
 };
 
