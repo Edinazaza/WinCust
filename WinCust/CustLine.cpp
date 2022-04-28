@@ -48,7 +48,7 @@ std::shared_ptr<CustLine> CustLine::GetInstance() {
     return m_instance;
 }
 
-HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd_cust) {
+HRESULT CustLine::Initialize(const HINSTANCE h_instance, const HWND hwnd_cust) {
     if (!RegisterCustLine(h_instance))
         return E_FAIL;
 
@@ -60,7 +60,7 @@ HRESULT CustLine::Initialize(HINSTANCE h_instance, HWND hwnd_cust) {
     return S_OK;
 }
 
-HRESULT CustLine::ShowCustLine() {
+HRESULT CustLine::ShowCustLine() const {
     ShowWindow(m_hwnd, SW_SHOWNORMAL);
     UpdateWindow(m_hwnd);
     return S_OK;
@@ -115,7 +115,7 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
     return 0;
 }
 
-ATOM CustLine::RegisterCustLine(HINSTANCE h_instance) {
+ATOM CustLine::RegisterCustLine(const HINSTANCE h_instance) const {
     WNDCLASSEXW wcex = {};
 
     wcex.cbSize = sizeof(WNDCLASSEX);
@@ -134,7 +134,7 @@ ATOM CustLine::RegisterCustLine(HINSTANCE h_instance) {
     return RegisterClassExW(&wcex);
 }
 
-HRESULT CustLine::CreateCustLine(HINSTANCE h_instance) {
+HRESULT CustLine::CreateCustLine(const HINSTANCE h_instance) {
     m_hwnd = CreateWindowExW(WS_EX_DLGMODALFRAME | WS_EX_TOPMOST,
                              m_class_name.data(), m_title_window.data(),
                              WS_SYSMENU | WS_MINIMIZEBOX | WS_BORDER,
@@ -177,7 +177,7 @@ HRESULT CustLine::CreateCustLineButtons() {
     return S_OK;
 }
 
-HRESULT CustLine::OnPush(Controllers button_push) {
+HRESULT CustLine::OnPush(const Controllers button_push) {
     for (const HWND& button : m_buttons)
         SendMessageW(button, BM_SETCHECK, 0, 0);
     

@@ -7,12 +7,12 @@
 class BorderHiglighter final
 {
 public:
-    HRESULT Initialize(HWND hwnd_cust);
+    HRESULT Initialize(const HWND hwnd_cust);
     HRESULT StartDrawing();
     HRESULT StopDrawing();
     ~BorderHiglighter();
 private:
-    void Draw();
+    void Draw() const;
 
     HWND m_hwnd_cust = NULL;
     bool is_draw = false;

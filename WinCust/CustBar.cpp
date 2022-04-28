@@ -12,13 +12,13 @@ HRESULT CustBar::Initialize(const HWND hwnd_parent, const HINSTANCE h_instance, 
     return S_OK;
 }
 
-HRESULT CustBar::Show() {
+HRESULT CustBar::Show() const {
     SendMessageW(m_hwnd, WM_SIZE, 0, 0);
     ShowWindow(m_hwnd, SW_SHOW);
     return S_OK;
 }
 
-HRESULT CustBar::Hide() {
+HRESULT CustBar::Hide() const {
     ShowWindow(m_hwnd, SW_HIDE);
     return S_OK;
 }

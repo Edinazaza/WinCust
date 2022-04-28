@@ -3,7 +3,7 @@
 
 const std::wstring CustLineController::m_dir_video = L"out\\";
 
-HRESULT CustLineController::Initialize(HWND hwnd_cust) {
+HRESULT CustLineController::Initialize(const HWND hwnd_cust) {
     if(FAILED(m_frame_creator.SetHWND(hwnd_cust)))
        return E_FAIL;
 
@@ -54,7 +54,7 @@ CustLineController::~CustLineController() {
         m_push_frame_process.join();
 }
 
-const CustLineController::WinCustStatus CustLineController::GetStatus() const {
+CustLineController::WinCustStatus CustLineController::GetStatus() const {
     return m_status;
 }
 
@@ -87,7 +87,7 @@ HRESULT CustLineController::PushFrame() {
     return S_OK;
 }
 
-HRESULT CustLineController::FileMove() {
+HRESULT CustLineController::FileMove() const {
     constexpr DWORD buffer_size = 260ul;
     TCHAR to_video_filename[buffer_size] = {0};
 

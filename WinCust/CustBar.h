@@ -7,8 +7,8 @@ class CustBar
 {
 public:
     HRESULT Initialize(const HWND hwnd_parent, const HINSTANCE h_instance, const int id);
-    HRESULT Show();
-    HRESULT Hide();
+    HRESULT Show() const;
+    HRESULT Hide() const;
     HRESULT SetText(const std::wstring& text);
     HRESULT SetMinHeight(const unsigned int height);
 private:

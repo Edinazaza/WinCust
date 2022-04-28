@@ -13,17 +13,17 @@ public:
     };
 
     CustLineController() = default;
-    HRESULT Initialize(HWND hwnd_cust);
+    HRESULT Initialize(const HWND hwnd_cust);
     HRESULT OnStart();
     HRESULT OnPause();
     HRESULT OnStop();
     ~CustLineController();
 
-    const WinCustStatus GetStatus() const;
+    WinCustStatus GetStatus() const;
     HWND GetCustHWND() const;
 private:
     HRESULT PushFrame();
-    HRESULT FileMove();
+    HRESULT FileMove() const;
     HRESULT SetFilename();
 
     static const unsigned int m_fps = 25;

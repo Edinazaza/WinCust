@@ -1,7 +1,7 @@
 #include "BorderHiglighter.h"
 #include <thread>
 
-HRESULT BorderHiglighter::Initialize(HWND hwnd_cust) {
+HRESULT BorderHiglighter::Initialize(const HWND hwnd_cust) {
     m_hwnd_cust = hwnd_cust;
 
     if (!m_hwnd_cust)
@@ -31,8 +31,8 @@ BorderHiglighter::~BorderHiglighter() {
     StopDrawing();
 }
 
-void BorderHiglighter::Draw() {
-    HBRUSH brush = CreateSolidBrush(m_color);
+void BorderHiglighter::Draw() const {
+    const HBRUSH brush = CreateSolidBrush(m_color);
     RECT rc = {};
     HDC hdc = {};
     while (is_draw) {

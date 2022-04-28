@@ -15,8 +15,8 @@ public:
 
     static std::shared_ptr<CustLine> GetInstance();
 
-    HRESULT Initialize(HINSTANCE h_instance, HWND hwnd_cust);
-    HRESULT ShowCustLine();
+    HRESULT Initialize(const HINSTANCE h_instance, const HWND hwnd_cust);
+    HRESULT ShowCustLine() const;
     static const std::wstring GetCustLineClassName();
     static const std::wstring GetCustLineTitle();
 private:
@@ -31,11 +31,11 @@ private:
     };
 
     static LRESULT CALLBACK CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
-    ATOM RegisterCustLine(HINSTANCE h_instance);
-    HRESULT CreateCustLine(HINSTANCE h_instance);
+    ATOM RegisterCustLine(const HINSTANCE h_instance) const;
+    HRESULT CreateCustLine(const HINSTANCE h_instance);
     HRESULT CreateCustLineButtons();
 
-    static HRESULT OnPush(Controllers button_push);
+    static HRESULT OnPush(const Controllers button_push);
     static HRESULT ShowStatusBar();
     static HRESULT HideStatusbar();
 
