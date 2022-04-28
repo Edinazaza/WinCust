@@ -1,8 +1,8 @@
 #pragma once
-#include <windows.h>
+#include <Windows.h>
+
 #include <string>
 #include <thread>
-
 
 class BorderHiglighter final
 {

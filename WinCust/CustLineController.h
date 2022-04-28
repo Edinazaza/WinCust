@@ -1,4 +1,10 @@
 #pragma once
+#include <Windows.h>
+
+#include <string>
+#include <thread>
+#include <chrono>
+
 #include "FrameCreator/FrameCreator.h"
 #include "VideoCreator/VideoCreator.h"
 

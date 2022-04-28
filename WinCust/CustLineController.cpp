@@ -1,4 +1,13 @@
 #include "CustLineController.h"
+
+#include <Windows.h>
+
+#include <string>
+#include <thread>
+#include <chrono>
+
+#include "FrameCreator/FrameCreator.h"
+#include "VideoCreator/VideoCreator.h"
 #include "CustLine.h"
 
 const unsigned int CustLineController::m_fps = 25u;

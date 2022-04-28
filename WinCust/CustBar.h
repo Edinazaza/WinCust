@@ -1,7 +1,8 @@
 #pragma once
 #include <Windows.h>
-#include <string>
 #include <CommCtrl.h>
+
+#include <string>
 
 class CustBar
 {

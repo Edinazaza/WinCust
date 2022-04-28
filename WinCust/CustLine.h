@@ -1,11 +1,15 @@
 #pragma once
-#include <windows.h>
+#include <Windows.h>
+
+#include <sstream>
 #include <string>
 #include <array>
+#include <memory>
 
 #include "CustLineController.h"
 #include "BorderHiglighter.h"
 #include "CustBar.h"
+#include "resource.h"
 
 class CustLine final
 {

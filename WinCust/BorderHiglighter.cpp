@@ -1,4 +1,8 @@
 #include "BorderHiglighter.h"
+
+#include <Windows.h>
+
+#include <string>
 #include <thread>
 
 HRESULT BorderHiglighter::Initialize(const HWND hwnd_cust) {

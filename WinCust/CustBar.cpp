@@ -1,5 +1,9 @@
 #include "CustBar.h"
+
+#include <Windows.h>
 #include <CommCtrl.h>
+
+#include <string>
 
 HRESULT CustBar::Initialize(const HWND hwnd_parent, const HINSTANCE h_instance, const int id) {
     InitCommonControls();
