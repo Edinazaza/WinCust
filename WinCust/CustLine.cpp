@@ -11,7 +11,7 @@ namespace
         unsigned int mm = time / 60;
         time = time % 60;
         unsigned int ss = time;
-        std::wstringstream ws;
+        std::wstringstream ws = {};
         ws.width(2);
         ws.fill('0');
         ws << hh << L':';

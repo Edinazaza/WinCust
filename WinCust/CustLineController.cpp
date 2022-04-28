@@ -109,7 +109,7 @@ HRESULT CustLineController::FileMove() {
         return E_FAIL;
     }
 
-    std::wstring to(to_video_filename);
+    std::wstring to{to_video_filename};
     to += L".mp4";
 
     if(!MoveFileExW(m_filename.data(), to.data(), MOVEFILE_REPLACE_EXISTING))
@@ -125,7 +125,7 @@ HRESULT CustLineController::SetFilename() {
     if (!GetModuleFileNameW(NULL, from_path_to_video_filename, buffer_size))
         return E_FAIL;
 
-    std::wstring from(from_path_to_video_filename);
+    std::wstring from{from_path_to_video_filename};
     from.replace(from.begin() + from.find_last_of(L"\\") + 1, from.end(), L"");
     CreateDirectoryW((from + m_dir_video).data(), NULL);
     m_filename = from + m_dir_video + std::to_wstring(std::time(NULL)) + L".mp4";

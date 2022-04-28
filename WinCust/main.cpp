@@ -14,7 +14,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
     win_cust->Initialize(hInstance, GetDesktopWindow());
     win_cust->ShowCustLine();
 
-    MSG msg;
+    MSG msg = {};
     // Main message loop:
     while (GetMessage(&msg, nullptr, 0, 0)) {
         TranslateMessage(&msg);
