@@ -1,6 +1,7 @@
 #include "CustLineController.h"
 #include "CustLine.h"
 
+const unsigned int CustLineController::m_fps = 25u;
 const std::wstring CustLineController::m_dir_video = L"out\\";
 
 HRESULT CustLineController::Initialize(const HWND hwnd_cust) {
@@ -75,7 +76,7 @@ HRESULT CustLineController::PushFrame() {
         if (m_status == STOP)
             break;
 
-        GetBitmapBits(m_frame_creator.GetFrame(), frame.size(), frame.data());
+        GetBitmapBits(m_frame_creator.GetFrame(), static_cast<LONG>(frame.size()), frame.data());
         std::thread([this, &frame]() {
             m_video_creator.AddFrame(frame, true);
         }).detach();
@@ -89,16 +90,16 @@ HRESULT CustLineController::PushFrame() {
 
 HRESULT CustLineController::FileMove() const {
     constexpr DWORD buffer_size = 260ul;
-    TCHAR to_video_filename[buffer_size] = {0};
+    WCHAR to_video_filename[buffer_size] = {0};
 
     OPENFILENAME open_filename = {0};
     open_filename.lStructSize = sizeof(OPENFILENAME);
     open_filename.hwndOwner = FindWindow(CustLine::GetCustLineClassName().data(), CustLine::GetCustLineTitle().data());
     open_filename.lpstrFile = &to_video_filename[0];
     open_filename.nMaxFile = buffer_size;
-    open_filename.lpstrFilter = _T("Video File(.mp4)\0*.mp4\0");
+    open_filename.lpstrFilter = L"Video File(.mp4)\0*.mp4\0";
     open_filename.nFilterIndex = 1;
-    open_filename.lpstrTitle = _T("Save video file!");
+    open_filename.lpstrTitle = L"Save video file!";
     open_filename.lpstrFileTitle = NULL;
     open_filename.nMaxFileTitle = 0;
     open_filename.lpstrInitialDir = NULL;
@@ -120,7 +121,7 @@ HRESULT CustLineController::FileMove() const {
 
 HRESULT CustLineController::SetFilename() {
     constexpr DWORD buffer_size = 260ul;
-    TCHAR from_path_to_video_filename[buffer_size] = {0};
+    WCHAR from_path_to_video_filename[buffer_size] = {0};
 
     if (!GetModuleFileNameW(NULL, from_path_to_video_filename, buffer_size))
         return E_FAIL;

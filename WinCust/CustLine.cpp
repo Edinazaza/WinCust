@@ -5,14 +5,14 @@
 
 namespace
 {
-    std::wstring seconds_to_string_hh_mm_ss(unsigned long int time) {
-        unsigned int hh = time / 3600;
-        time = time % 3600;
-        unsigned int mm = time / 60;
+    std::wstring seconds_to_string_hh_mm_ss(unsigned int time) {
+        const unsigned int hh = time / 3600u;
+        time = time % 3600ul;
+        const unsigned int mm = time / 60u;
         time = time % 60;
-        unsigned int ss = time;
+        const unsigned int ss = time;
         std::wstringstream ws = {};
-        ws.width(2);
+        ws.width(2ll);
         ws.fill('0');
         ws << hh << L':';
         ws.width(2);
@@ -75,7 +75,7 @@ const std::wstring CustLine::GetCustLineTitle() {
 }
 
 LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param) {
-    static unsigned long int seconds_of_record = 0ul;
+    static unsigned int seconds_of_record = 0u;
     switch (msg) {
     case WM_TIMER:
         if (w_param != StatusBar)
@@ -86,7 +86,7 @@ LRESULT CustLine::CustLineProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_par
             m_statusbar.SetText(seconds_to_string_hh_mm_ss(seconds_of_record));
             ++seconds_of_record;
         } else if (m_controller.GetStatus() == CustLineController::WinCustStatus::STOP)
-            seconds_of_record = 0ul;
+            seconds_of_record = 0u;
         break;
     case WM_COMMAND:
         OnPush(static_cast<Controllers>(w_param));
@@ -162,8 +162,8 @@ HRESULT CustLine::CreateCustLine(const HINSTANCE h_instance) {
 
 HRESULT CustLine::CreateCustLineButtons() {
     constexpr DWORD style_button = WS_CHILD | WS_VISIBLE | BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_BORDER;
-    const int width_button  = m_width / m_buttons.size() - 4; // width_button = |equal part of window space for each button| - |space for button borders|
-    const int height_button = m_height / 2;
+    const unsigned int width_button  = m_width / static_cast<unsigned int>(m_buttons.size()) - 4u; // width_button = |equal part of window space for each button| - |space for button borders|
+    const unsigned int height_button = m_height / 2u;
     const HINSTANCE instance_button = (HINSTANCE)GetWindowLongPtr(m_hwnd, GWLP_HINSTANCE);
 
     m_buttons[StartButton] = CreateWindow(L"BUTTON", L"Start", style_button, width_button * StartButton, 0, width_button, height_button, m_hwnd, (HMENU)StartButton, instance_button, NULL);
@@ -184,7 +184,9 @@ HRESULT CustLine::OnPush(const Controllers button_push) {
     if (button_push != StartButton && m_controller.GetStatus() == CustLineController::WinCustStatus::STOP)
         return S_OK;
 
-    return SendMessageW(m_buttons[button_push], BM_SETCHECK, 1, 0);
+    SendMessageW(m_buttons[button_push], BM_SETCHECK, 1, 0);
+
+    return S_OK;
 }
 
 HRESULT CustLine::ShowStatusBar() {
