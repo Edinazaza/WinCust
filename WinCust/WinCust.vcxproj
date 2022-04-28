@@ -162,6 +162,13 @@
     <ClInclude Include="CustBar.h" />
     <ClInclude Include="CustLine.h" />
     <ClInclude Include="CustLineController.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinCust.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="WinCust.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

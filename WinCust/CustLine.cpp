@@ -1,6 +1,7 @@
 #include "CustLineController.h"
 #include "CustLine.h"
 #include <sstream>
+#include "resource.h"
 
 namespace
 {
@@ -123,7 +124,7 @@ ATOM CustLine::RegisterCustLine(HINSTANCE h_instance) {
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = h_instance;
-    wcex.hIcon = NULL;
+    wcex.hIcon = LoadIcon(h_instance, MAKEINTRESOURCE(IDI_ICON_WIN_CUST));
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = NULL;
