@@ -125,7 +125,7 @@ HRESULT CustLineController::SetFilename() {
 
     std::wstring from(from_path_to_video_filename);
     from.replace(from.begin() + from.find_last_of(L"\\") + 1, from.end(), L"");
-    m_filename = from + std::to_wstring(std::time(NULL) + rand()) + L".mp4";
+    m_filename = from + std::to_wstring(std::time(NULL)) + L".mp4";
 
     return S_OK;
 }
