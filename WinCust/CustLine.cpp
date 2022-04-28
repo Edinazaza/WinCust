@@ -177,9 +177,8 @@ HRESULT CustLine::CreateCustLineButtons() {
     m_buttons[PauseButton] = CreateWindow(L"BUTTON", L"Pause", style_button, width_button * PauseButton, 0, width_button, height_button, m_hwnd, (HMENU)PauseButton, instance_button, NULL);
     m_buttons[StopButton] = CreateWindow(L"BUTTON", L"Stop", style_button, width_button * StopButton, 0, width_button, height_button, m_hwnd, (HMENU)StopButton, instance_button, NULL);
 
-    for (const HWND& buttons : m_buttons)
-        if (!buttons)
-            return E_FAIL;
+    if (std::any_of(m_buttons.begin(), m_buttons.end(), [](const HWND button) { return button == NULL; }))
+        return E_FAIL;
 
     return S_OK;
 }
